@@ -101,7 +101,7 @@ final class FormDataParser {
      */
     public static function parseFormData(string $formData = null, string $boundary = null): array {
         $formData ??= \file_get_contents("php://input");
-        $parts = self::getParts($formData);
+        $parts = self::getParts($formData, $boundary);
         $parts = \array_map([self::class, "parsePart"], $parts);
         return $parts;
     }
@@ -135,7 +135,6 @@ final class FormDataParser {
         // https://www.php.net/manual/en/features.file-upload.post-method.php
         // https://www.php.net/manual/en/features.file-upload.errors.php#features.file-upload.errors
         
-        // $file = [
         $part["file"] = [
             "name"     => $part["headers"]["Content-Disposition"]["filename"],
             "type"     => $part["headers"]["Content-Type"]["mainValue"],
@@ -261,7 +260,6 @@ final class FormDataParser {
     public static function getFieldsAndFiles() {
         $formData = self::parseFormData();
         self::processFiles($formData);
-        // print_r($formData);
         $result = [
             "fields" => self::getFields($formData),
             "files"  => self::getFiles($formData),
