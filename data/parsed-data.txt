@@ -1,0 +1,70 @@
+$formData = [
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "name"
+            ],
+            "Content-Type" => [
+            	"mainValue" => "text/plain"
+            ],
+        ],
+        "body" => "John"
+    ],
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "surname"
+            ],
+        ],
+        "body" => "Doe"
+    ],
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "hobbies[]"
+            ],
+        ],
+        "body" => "Art"
+    ],
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "hobbies[]"
+            ],
+        ],
+        "body" => "Chess"
+    ],
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "file1",
+                "filename"  => "myfile.txt",
+            ],
+            "Content-Type" => [
+            	"mainValue" => "text/plain"
+            ],
+        ],
+        "body" => "Hello, World!",
+    ],
+    [
+        "headers" => [
+            "Content-Disposition" => [
+                "mainValue" => "form-data",
+                "name" => "file2",
+                "filename"  => "myfile.png",
+            ],
+            "Content-Type" => [
+            	"mainValue" => "image/png"
+            ],
+        ],
+        "body" => "ï¿½PNG
+
+   
+IHDR         &ï¿½	)   sRGB ï¿½ï¿½ï¿½   gAMA  ï¿½ï¿½ï¿½a   	pHYs  t  tï¿½fx   ;IDATWcï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½?ï¿½ÑŸï¿½|ï¿½ï¿½?ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½?Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½$ï¿½>ï¿½ï¿½R    IENDï¿½B`ï¿½",
+    ],
+];

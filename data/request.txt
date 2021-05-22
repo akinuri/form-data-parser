@@ -1,0 +1,41 @@
+PATCH /somepath HTTP/1.1
+User-Agent: PostmanRuntime/7.28.0
+Accept: */*
+Postman-Token: 29f7308c-f0fa-4076-b063-56e810ada62d
+Host: localhost
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=--------------------------474911943242409055896447
+Content-Length: 591
+
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="name"
+Content-Type: text/plain
+
+John
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="surname"
+
+Doe
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="hobbies[]"
+
+Art
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="hobbies[]"
+
+Chess
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="file1"; filename="myfile.txt"
+Content-Type: text/plain
+
+Hello, World!
+----------------------------474911943242409055896447
+Content-Disposition: form-data; name="file2"; filename="myfile.png"
+Content-Type: image/png
+
+�PNG
+
+   
+IHDR         &�	)   sRGB ���   gAMA  ���a   	pHYs  t  t�fx   ;IDATWc�?�����������g���?�џ�|��?�r������[�?S������� �$�>��R    IEND�B`�
+----------------------------474911943242409055896447--

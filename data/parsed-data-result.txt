@@ -1,0 +1,25 @@
+$_INPUT = [
+    "name" => "John",
+    "surname" => "Doe",
+    "hobbies" => [
+        "Art",
+        "Chess"
+    ],
+];
+
+$_FILES = [
+    "file1" => [
+        "name"     => "myfile.txt",
+        "type"     => "text/plain",
+        "size"     => 13,
+        "tmp_name" => "/tmp/uplA72D.tmp",
+        "error"    => 0,
+    ],
+    "file2" => [
+        "name"     => "myfile.png",
+        "type"     => "image/png",
+        "size"     => 166,
+        "tmp_name" => "/tmp/uplA72E.tmp",
+        "error"    => 0,
+    ],
+];

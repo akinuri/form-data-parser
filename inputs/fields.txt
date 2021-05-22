@@ -1,0 +1,11 @@
+name:John
+surname:Doe
+hobbies[]:Art
+hobbies[]:Chess
+file1:myfile.txt
+file2:myfile.png
+
+{
+    "name" : "John",
+    "surname" : "Doe"
+}
