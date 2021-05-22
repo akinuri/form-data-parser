@@ -32,7 +32,6 @@ final class FormDataParser {
         foreach ($pieces as $piece) {
             $assignment = \explode("=", $piece);
             $assignment = \array_map("trim", $assignment);
-            $mainValue = null;
             if (\count($assignment) == 1) {
                 $result["mainValue"] = $assignment[0];
             } else {
