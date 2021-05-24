@@ -6,9 +6,9 @@ require "FormDataParser.php";
 $_INPUT = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_INPUT += $_POST;
+    $_INPUT = $_POST;
 }
-else if (in_array($_SERVER["REQUEST_METHOD"], ["PUT", "PATCH", "DELETE"])) {
+else if (in_array($_SERVER["REQUEST_METHOD"], ["PUT", "PATCH"])) {
     
     $contentType = $_SERVER["CONTENT_TYPE"] ?? null;
     
@@ -38,8 +38,8 @@ else if (in_array($_SERVER["REQUEST_METHOD"], ["PUT", "PATCH", "DELETE"])) {
                 break;
             
         }
-    
-        $_INPUT += $fields;
+        
+        $_INPUT = $fields;
     }
     
 }
