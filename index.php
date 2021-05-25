@@ -5,42 +5,46 @@ require "FormDataParser.php";
 // Single source of truth?
 $_INPUT = [];
 
+$contentType = FormDataParser::parseHeaderValue($_SERVER["CONTENT_TYPE"] ?? null, "mainValue");
+$requestBody = \file_get_contents("php://input");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_INPUT = $_POST;
+    if ($contentType == "application/json") {
+        $json = \json_decode($requestBody, true);
+        $_INPUT += $json;
+    }
 }
 else if (in_array($_SERVER["REQUEST_METHOD"], ["PUT", "PATCH"])) {
+            
+    if (empty($contentType)) return;
     
-    $contentType = $_SERVER["CONTENT_TYPE"] ?? null;
+    $fields = null;
     
-    if (!empty($contentType)) {
+    switch ($contentType) {
         
-        $contentType = FormDataParser::parseHeaderValue($contentType)["mainValue"];
+        case "application/x-www-form-urlencoded":
+            \parse_str($requestBody, $fields);
+            break;
         
-        $requestBody = \file_get_contents("php://input");
+        case "multipart/form-data":
+            $formData = FormDataParser::getFieldsAndFiles();
+            $fields = $formData["fields"];
+            $_FILES = $formData["files"];
+            break;
         
-        $fields = null;
+        case "application/json":
+            $json = \json_decode($requestBody, true);
+            if ($json) $fields = $json;
+            break;
         
-        switch ($contentType) {
-            
-            case "application/x-www-form-urlencoded":
-                \parse_str($requestBody, $fields);
-                break;
-            
-            case "multipart/form-data":
-                $formData = FormDataParser::getFieldsAndFiles();
-                $fields = $formData["fields"];
-                $_FILES = $formData["files"];
-                break;
-            
-            case "application/json":
-                $json = \json_decode($requestBody, true);
-                if ($json) $fields = $json;
-                break;
-            
-        }
-        
-        $_INPUT = $fields;
     }
+    
+    if (!\is_array($fields)) {
+        $fields = (array) $fields;
+    }
+    
+    $_INPUT = $fields;
     
 }
 
