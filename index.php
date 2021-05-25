@@ -9,11 +9,14 @@ $contentType = FormDataParser::parseHeaderValue($_SERVER["CONTENT_TYPE"] ?? null
 $requestBody = \file_get_contents("php://input");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     $_INPUT = $_POST;
+    
     if ($contentType == "application/json") {
         $json = \json_decode($requestBody, true);
-        $_INPUT += $json;
+        if ($json) $_INPUT += $json;
     }
+    
 }
 else if (in_array($_SERVER["REQUEST_METHOD"], ["PUT", "PATCH"])) {
             
