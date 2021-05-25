@@ -26,18 +26,23 @@ final class FormDataParser {
     /**
      * Parses Content-Disposition and Content-Type header values.
      */
-    public static function parseHeaderValue(string $headerValue): array {
+    public static function parseHeaderValue(?string $headerValue, string $returnField = null) {
         $result = [];
-        $pieces = \explode(";", $headerValue);
-        foreach ($pieces as $piece) {
-            $assignment = \explode("=", $piece);
-            $assignment = \array_map("trim", $assignment);
-            if (\count($assignment) == 1) {
-                $result["mainValue"] = $assignment[0];
-            } else {
-                $assignment[1] = \trim($assignment[1], "\"");
-                $result[ $assignment[0] ] = $assignment[1];
+        if (!empty($headerValue)) {
+            $pieces = \explode(";", $headerValue);
+            foreach ($pieces as $piece) {
+                $assignment = \explode("=", $piece);
+                $assignment = \array_map("trim", $assignment);
+                if (\count($assignment) == 1) {
+                    $result["mainValue"] = $assignment[0];
+                } else {
+                    $assignment[1] = \trim($assignment[1], "\"");
+                    $result[ $assignment[0] ] = $assignment[1];
+                }
             }
+        }
+        if ($returnField) {
+            $result = $result[$returnField] ?? null;
         }
         return $result;
     }
